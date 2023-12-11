@@ -5,3 +5,5 @@
 After cloning run 'npm i' or 'npm install' to install the dependencies.
 
 To run it on localhost run 'npm run dev'
+
+**Do not push or merge on gh-pages yet**
