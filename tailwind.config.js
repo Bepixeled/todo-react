@@ -6,11 +6,11 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'light': "url('../src/img/Ice.jpg')",
-        'dark': "url('../src/img/Gotham.jpg')",
+        'lighty': "url('9057831.png')",
+        'darky': "url('8999248.png')",
       }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
 
