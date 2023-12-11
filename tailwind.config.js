@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'light': "url('./src/assets/img/Ice.jpg')",
-        'dark': "url('./src/assets/img/Gotham.jpg')",
+        'light': "url('../src/img/Ice.jpg')",
+        'dark': "url('../src/img/Gotham.jpg')",
       }
     },
   },
