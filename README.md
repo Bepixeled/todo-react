@@ -1,4 +1,4 @@
-# Todolist with React + Tailwind
+# Todolist with React + Vite + Tailwind
 
 [Projekt](https://github.com/users/Bepixeled/projects/1)
 
