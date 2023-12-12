@@ -23,7 +23,7 @@ const TodoList = () => {
   };
 
   return (
-    <div className="rounded overflow-hidden mx-auto mt-8 pt-6 pb-8 mb-4 w-3/5 flex justify-center">
+    <div className="rounded overflow-hidden mx-auto mt-8 pt-6 pb-8 mb-4 w-5/6 md:w-3/5 flex justify-center">
       <ol className="flex justify-center flex-col items-center m-4 w-full">
         {todoItems.map((item) => {
           return (
