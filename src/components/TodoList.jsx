@@ -1,4 +1,5 @@
 import React from "react";
+import Listitem from "./Listitem";
 
 const TodoList = () => {
   return (
@@ -7,12 +8,8 @@ const TodoList = () => {
         <h2 className="text-2xl font-bold mb-4">Todo List</h2>
 
         <ol className="justify-center flex-col items-center m-4">
-          <li className="p-2 dark:bg-gray-700 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12 ">
-            Test
-          </li>
-          <li className="p-2 dark:bg-gray-700 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12 ">
-            Test
-          </li>
+          <Listitem />
+          <Listitem />
         </ol>
       </div>
     </div>
