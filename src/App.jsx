@@ -65,9 +65,10 @@ function App() {
             </svg>
           </label>
         </div>
-        <Search />
-        <TodoList />
       </div>
+      <h2 className="block text-2xl font-bold mb-4">Get Things Done!</h2>
+      <Search />
+      <TodoList />
     </>
   );
 }
