@@ -1,37 +1,30 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Listitem from "./Listitem";
 
 const TodoList = () => {
-  const [idCount, setIdCount] = useState(3);
-  const [todoItems, setTodoItems] = useState([
-    { id: 0, done: false, dueDate: 0, text: "Item 1" },
-    { id: 1, done: true, dueDate: 0, text: "Item 2" },
-    { id: 2, done: false, dueDate: 0, text: "Item 3" },
-    { id: 3, done: true, dueDate: 0, text: "Item 4" },
-  ]);
+  const [idCount, setIdCount] = useState(0);
+  const [todoItems, setTodoItems] = useState([]);
 
   const createDefaultItem = () => {
-    setIdCount += 1;
     const newItem = {
       id: idCount,
       done: false,
       dueDate: 0,
-      text: `item ${idCount}`,
+      text: "Enter text...",
     };
     setTodoItems([...todoItems, newItem]);
+    setIdCount(idCount + 1);
   };
 
-  const changeItem = (value, id, dueDate, isNew) => {
+  const changeItem = (id, text, dueDate, isNew) => {
     console.log("change Item");
-    todoItems[id].text = value;
+    todoItems.find((item) => item.id === id).text = text;
     todoItems[id].dueDate = dueDate;
     if (isNew) createDefaultItem();
   };
 
-  const isDone = (id,isDone) => {
-    // if (todoItems[id].done !== isDone) todoItems[id].done = isDone;
-  };
+  useEffect(createDefaultItem, []);
 
   return (
     <div className="rounded overflow-hidden mx-auto mt-8 pt-6 pb-8 mb-4 w-5/6 md:w-3/5 flex justify-center">
