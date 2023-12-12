@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
+import Search from "./components/search";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,6 +30,7 @@ function App() {
           <label className="cursor-pointer grid place-items-center">
             <input
               type="checkbox"
+              name="toggle"
               value="synthwave"
               className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
             />
@@ -63,6 +65,7 @@ function App() {
             </svg>
           </label>
         </div>
+        <Search />
         <TodoList />
       </div>
     </>
