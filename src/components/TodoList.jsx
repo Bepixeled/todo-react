@@ -4,11 +4,12 @@ import Listitem from "./Listitem";
 
 const TodoList = () => {
   const [todoItems, setTodoItems] = useState([
-    { id: 0, text: "Enter text..." },
-    { id: 1, text: "Enter 1 text..." },
-    { id: 2, text: "Enter  2ext..." },
-    { id: 3, text: "Enter 3 text..." },
+    { id: 0, done:false, dueDate: 0,text: "Item 1" },
+    { id: 1, done:true, dueDate: 0,text: "Item 2" },
+    { id: 2, done:false, dueDate: 0,text: "Item 3" },
+    { id: 3, done:true, dueDate: 0,text: "Item 4" },
   ]);
+  
   return (
     <div className="rounded overflow-hidden max-w-xl mx-auto mt-8 pt-6 pb-8 mb-4">
       <ol className="justify-center flex-col items-center m-4">
@@ -17,7 +18,7 @@ const TodoList = () => {
         </li>
 
         {todoItems.map((item) => {
-          return <Listitem key={item.id} item={item} />;
+          return <Listitem item={item} />;
         })}
       </ol>
     </div>
