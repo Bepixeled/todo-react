@@ -8,7 +8,8 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <div className="flex flex-col md:flex-row md:justify-between max-w-[1280px] px-24 pt-24 mx-auto">
+      <div className="flex justify-center"><img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /></div>
+      <div className="flex flex-col md:flex-row md:justify-between max-w-[1280px] px-24 mx-auto">
 
         <Search />
         <DarkLight />
