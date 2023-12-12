@@ -23,8 +23,8 @@ const TodoList = () => {
   };
 
   return (
-    <div className="rounded overflow-hidden max-w-xl mx-auto mt-8 pt-6 pb-8 mb-4">
-      <ol className="justify-center flex-col items-center m-4">
+    <div className="flex justify-center">
+      <ol className="flex w-[8/12] sm:w-[9/12] md:w-[8/12] ">
         {todoItems.map((item) => {
           return (
             <Listitem key={item.id} item={item} createNew={createDefaultItem} />
