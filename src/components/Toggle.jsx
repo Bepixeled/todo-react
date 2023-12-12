@@ -20,7 +20,7 @@ const DarkLight = () => {
     return (
 
         <div className="flex" onClick={handleClick}>
-            <div className="flex-initial w-32 font-bold underline decoration-sky-500 text-black dark:text-yellow-300">
+            <div className="flex-initial w-32 font-bold underline decoration-sky-500 text-black dark:text-yellow-300 mb-4">
                 <label className="cursor-pointer grid place-items-center">
                     <input
                         type="checkbox"
