@@ -16,16 +16,16 @@ export default function Listitem({ item, changeItem }) {
       <input
         type="text"
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
-        data-done={item.done}
-        data-due={isDue}
+        // data-done={item.done}
+        // data-due={isDue}
         value={item.text}
         onChange={(event) => {
           // console.log(event.target.value);
           if (event.key === "Enter") {
             console.log(event.key);
             changeItem(
-              event.target.value,
               item.id,
+              event.target.value,
               getTimeStamp() + 5 * 86400,
               isNew
             );
