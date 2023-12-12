@@ -22,12 +22,28 @@ const TodoList = () => {
     setTodoItems([...todoItems, newItem]);
   };
 
+  const changeItem = (value, id, dueDate, isNew) => {
+    console.log("change Item");
+    todoItems[id].text = value;
+    todoItems[id].dueDate = dueDate;
+    if (isNew) createDefaultItem();
+  };
+
+  const isDone = (id,isDone) => {
+    // if (todoItems[id].done !== isDone) todoItems[id].done = isDone;
+  };
+
   return (
     <div className="rounded overflow-hidden max-w-xl mx-auto mt-8 pt-6 pb-8 mb-4">
       <ol className="justify-center flex-col items-center m-4">
         {todoItems.map((item) => {
           return (
-            <Listitem key={item.id} item={item} createNew={createDefaultItem} />
+            <Listitem
+              key={item.id}
+              item={item}
+              changeItem={changeItem}
+              isDone={isDone}
+            />
           );
         })}
       </ol>
