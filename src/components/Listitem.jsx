@@ -1,10 +1,6 @@
 import { useRef } from "react";
 
-export default function Listitem(props, changeItem) {
-  const item = props.item;
-  const isNew = item.dueDate === 0;
-  const textRef = useRef();
-
+export default function Listitem({ item, changeItem, newItem }) {
   // Timstamp for Calculating due status
   const getTimeStamp = () => {
     //86400 Seconds per day
@@ -14,16 +10,26 @@ export default function Listitem(props, changeItem) {
   // due variable for due state visuals
   const isDue = item.dueDate < getTimeStamp() ? true : false;
 
+  const handleFocus = () => {
+    changeItem(item.id, "", getTimeStamp() + 5 * 86400, item.isNew);
+  };
+
   const handleChange = (event) => {
     // console.log(event.target.value);
-    if (event.key === "Enter") {
-      console.log(event.key);
-      changeItem(
-        item.id,
-        event.target.value,
-        getTimeStamp() + 5 * 86400,
-        isNew
-      );
+    // console.log(event.key);
+    changeItem(
+      item.id,
+      event.target.value,
+      getTimeStamp() + 5 * 86400,
+      item.isNew
+    );
+  };
+
+  const handleBlur = () => {
+    console.log("onBlur");
+    if (item.isNew) {
+      console.log("Item is new.");
+      newItem(item.id);
     }
   };
 
@@ -32,11 +38,9 @@ export default function Listitem(props, changeItem) {
       <input
         type="text"
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
-        // data-done={item.done}
-        // data-due={isDue}
-        ref={textRef}
+        onFocus={handleFocus}
         onChange={handleChange}
-        // onDrop={item.isDone(item.id, true)}
+        onBlur={handleBlur}
       />
     </li>
   );
