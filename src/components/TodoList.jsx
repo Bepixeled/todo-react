@@ -20,21 +20,24 @@ const TodoList = () => {
 
   const changeItem = (id, isDone, dueDate, text, isNew) => {
     console.log("change Item");
+    console.log(`todo text: ${text}`);
     const changedItem = {
       id: id,
-      isDOne: isDone,
+      isDone: isDone,
       dueDate: dueDate,
       text: text,
       isNew: isNew,
     };
     const todoIndex = todoItems.findIndex((item) => item.id === id);
+    console.log(`todo index: ${todoIndex}`);
     const todos = todoItems;
     todos[todoIndex] = changedItem;
     setTodoItems(todos);
+    console.log(todoItems);
   };
 
   const newItem = (id) => {
-    console.log("newItem()");
+    // console.log("newItem()");
     createDefaultItem();
   };
 

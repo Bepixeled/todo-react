@@ -9,26 +9,30 @@ export default function Listitem({ item, changeItem, newItem }) {
 
   // due variable for due state visuals
   const isDue = item.dueDate < getTimeStamp() ? true : false;
+  //   getTimeStamp() + 5 * 86400,
 
   const handleFocus = () => {
-    changeItem(item.id, "", getTimeStamp() + 5 * 86400, item.isNew);
+    console.log("handleFocus()");
+    changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
   };
 
   const handleChange = (event) => {
-    // console.log(event.target.value);
+    console.log("handleChange");
+    console.log(`text input content: ${event.target.value}`);
     // console.log(event.key);
     changeItem(
       item.id,
+      item.isDone,
+      item.dueDate,
       event.target.value,
-      getTimeStamp() + 5 * 86400,
       item.isNew
     );
   };
 
   const handleBlur = () => {
-    console.log("onBlur");
+    // console.log("onBlur");
     if (item.isNew) {
-      console.log("Item is new.");
+      //   console.log("Item is new.");
       newItem(item.id);
     }
   };
@@ -37,10 +41,11 @@ export default function Listitem({ item, changeItem, newItem }) {
     <li className="p-2 dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12">
       <input
         type="text"
+        value={item.text}
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
         onFocus={handleFocus}
         onChange={handleChange}
-        onBlur={handleBlur}
+        // onBlur={handleBlur}
       />
     </li>
   );
