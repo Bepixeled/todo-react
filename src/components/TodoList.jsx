@@ -12,16 +12,30 @@ const TodoList = () => {
       isDone: false,
       dueDate: 0,
       text: "Enter text...",
+      isNew: true,
     };
     setTodoItems([...todoItems, newItem]);
     setIdCount(idCount + 1);
   };
 
-  const changeItem = (id, text, dueDate, isNew) => {
+  const changeItem = (id, isDone, dueDate, text, isNew) => {
     console.log("change Item");
-    todoItems.find((item) => item.id === id).text = text;
-    todoItems[id].dueDate = dueDate;
-    if (isNew) createDefaultItem();
+    const changedItem = {
+      id: id,
+      isDOne: isDone,
+      dueDate: dueDate,
+      text: text,
+      isNew: isNew,
+    };
+    const todoIndex = todoItems.findIndex((item) => item.id === id);
+    const todos = todoItems;
+    todos[todoIndex] = changedItem;
+    setTodoItems(todos);
+  };
+
+  const newItem = (id) => {
+    console.log("newItem()");
+    createDefaultItem();
   };
 
   useEffect(createDefaultItem, []);
@@ -30,10 +44,18 @@ const TodoList = () => {
     <div className="rounded overflow-hidden mx-auto mt-8 pt-6 pb-8 mb-4 w-5/6 md:w-3/5 flex justify-center">
       <ol className="flex justify-center flex-col items-center m-4 w-full">
         {todoItems.map((item) => {
-          return <Listitem key={item.id} item={item} changeItem={changeItem} />;
+          return (
+            <Listitem
+              key={item.id}
+              item={item}
+              changeItem={changeItem}
+              newItem={newItem}
+            />
+          );
         })}
       </ol>
     </div>
   );
 };
+
 export default TodoList;
