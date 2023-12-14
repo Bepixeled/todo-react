@@ -3,6 +3,7 @@ import TodoList from "./TodoList";
 import Search from "./Search";
 import DarkLight from "./Toggle";
 import Footer from "./Footer";
+import FilterItems from "./Filter";
 import { useState, useEffect } from "react";
 
 const TodoContainer = () => {
@@ -49,7 +50,7 @@ const TodoContainer = () => {
         <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" />
       </div>
       <div className="flex flex-col-reverse items-center md:flex-row md:justify-around max-w-[1280px] px-24 mx-auto">
-        <Search todoItems={todoItems} />
+        <FilterItems todoItems={todoItems} />
         <DarkLight />
       </div>
       <div className="flex justify-center">
