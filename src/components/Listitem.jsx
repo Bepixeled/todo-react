@@ -20,17 +20,14 @@ export default function Listitem({ item, changeItem, newItem }) {
   };
 
   const handleChange = (e) => {
-    console.log("handleChange");
-    console.log(`text input content: ${e.target.value}`);
+    console.log(`handleChange: text input content: ${e.target.value}`);
     // console.log(event.key);
     changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
     setText(e.target.value);
   };
 
   const handleBlur = () => {
-    // console.log("onBlur");
     if (item.isNew) {
-      //   console.log("Item is new.");
       newItem(item.id);
     }
   };
@@ -41,8 +38,6 @@ export default function Listitem({ item, changeItem, newItem }) {
       e.target.blur();
     }
   };
-
-  //   useEffect(()=>,[])
 
   return (
     <li className="p-2 dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12">
