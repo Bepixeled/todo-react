@@ -3,8 +3,8 @@ import { useState } from "react";
 import Listitem from "./Listitem";
 
 const TodoList = () => {
-  const [idCount, setIdCount] = useState(3);
-  const [todoItems, setTodoItems] = useState([
+  let [idCount, setIdCount] = useState(3);
+  let [todoItems, setTodoItems] = useState([
     { id: 0, done: false, dueDate: 0, text: "Item 1" },
     { id: 1, done: true, dueDate: 0, text: "Item 2" },
     { id: 2, done: false, dueDate: 0, text: "Item 3" },

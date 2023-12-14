@@ -18,7 +18,7 @@ export default function Listitem({ item, changeItem, isDone }) {
           data-done={item.done}
           data-due={due}
           value={item.text}
-          onChange={(event) => {
+          onKeyDown={(event) => {
             // console.log(event.target.value);
             if (event.key === "Enter") {
               console.log(event.key);
@@ -26,7 +26,7 @@ export default function Listitem({ item, changeItem, isDone }) {
                 event.target.value,
                 item.id,
                 getTimeStamp() + 5 * 86400,
-                false
+                true
               );
             }
           }}
