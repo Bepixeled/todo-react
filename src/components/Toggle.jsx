@@ -2,7 +2,7 @@ import React from "react"
 
 const DarkLight = () => {
     function handleClick() {
-        if (localStorage.theme === "dark" || !("theme" in localStorage)) {
+        if (localStorage.theme === "light" || !("theme" in localStorage)) {
             //add class=dark in html element
             document.documentElement.classList.add("dark");
         } else {
