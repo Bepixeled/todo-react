@@ -6,13 +6,14 @@ const TodoList = () => {
   const [idCount, setIdCount] = useState(0);
   const [todoItems, setTodoItems] = useState([]);
 
-  const createDefaultItem = () => {
+  const createDefaultItem = (enableFocus = true) => {
     const newItem = {
       id: idCount,
       isDone: false,
       dueDate: 0,
       text: "Enter text...",
       isNew: true,
+      focus: enableFocus,
     };
     setTodoItems([...todoItems, newItem]);
     setIdCount(idCount + 1);
@@ -27,6 +28,7 @@ const TodoList = () => {
       dueDate: dueDate,
       text: text,
       isNew: isNew,
+      focus: false,
     };
     const todoIndex = todoItems.findIndex((item) => item.id === id);
     console.log(`todo index: ${todoIndex}`);
@@ -41,11 +43,11 @@ const TodoList = () => {
     createDefaultItem();
   };
 
-  useEffect(createDefaultItem, []);
+  useEffect(() => createDefaultItem(false), []);
 
   return (
-    <div className="rounded overflow-hidden mx-auto mt-8 pt-6 pb-8 mb-4 w-5/6 md:w-3/5 flex justify-center">
-      <ol className="flex justify-center flex-col items-center m-4 w-full">
+    <div className="rounded overflow-hidden mx-auto mt-8 w-5/6 md:w-3/5 flex justify-center">
+      <ol className="flex justify-center flex-col items-center mb-10 w-full">
         {todoItems.map((item) => {
           return (
             <Listitem

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Listitem({ item, changeItem, newItem }) {
   const [text, setText] = useState(item.text);
@@ -42,11 +42,14 @@ export default function Listitem({ item, changeItem, newItem }) {
     }
   };
 
+  //   useEffect(()=>,[])
+
   return (
     <li className="p-2 dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12">
       <input
         type="text"
         value={text}
+        autoFocus={item.focus}
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
         onFocus={handleFocus}
         onChange={handleChange}
