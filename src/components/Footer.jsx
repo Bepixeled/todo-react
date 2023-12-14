@@ -7,7 +7,8 @@ const Footer = () => {
                 <aside>
 
                     <div className="flex justify-center">
-                        <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" />
+                        {/* <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /> */}
+                        <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" />
                     </div><p>A project by:<br /><a href="https://github.com/thoiar" target="_blank" className="text-light-accent1-400 font-medium hover:uppercase">Tonio</a> - <a href="https://github.com/workingj" target="_blank" className="text-light-accent1-400 font-medium hover:uppercase">Joe</a> - <a href="https://github.com/Fern2023" target="_blank" className="text-light-accent1-400 font-medium hover:uppercase">Fernando</a> - <a href="https://github.com/Bepixeled" target="_blank" className="text-light-accent1-400 font-medium hover:uppercase">Christina</a></p>
                 </aside>
                 <nav>

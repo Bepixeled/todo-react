@@ -3,13 +3,29 @@ import TodoList from "./TodoList";
 import Search from "./Search";
 import DarkLight from "./Toggle";
 import Footer from "./Footer";
-import FilterItems from "./Filter";
+import FilterItems from "./FilterItems";
 import { useState, useEffect } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants";
 
 const TodoContainer = () => {
   const [idCount, setIdCount] = useState(0);
   const [todoItems, setTodoItems] = useState([]);
+  const [todoFilter, setTodoFilter] = useState("all");
+
+  let todoItemList = [];
+  // Item Filter Logic
+  switch (todoFilter) {
+    case "completed":
+      todoItemList = todoItems.filter((todo) => todo.isDone === true);
+      break;
+    case "uncompleted":
+      todoItemList = todoItems.filter((todo) => todo.isDone === false);
+      break;
+    default:
+      // If todoFilter is all take the unchanged todoitem List
+      todoItemList = todoItems;
+      break;
+  }
 
   const newItem = (enableFocus = false) => {
     console.log("newItem()");
@@ -47,20 +63,24 @@ const TodoContainer = () => {
   return (
     <div>
       <div className="flex justify-center">
-        <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" />
+        {/* <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /> */}
+        <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" />
       </div>
       <div className="flex flex-col-reverse items-center md:flex-row md:justify-around max-w-[1280px] px-24 mx-auto">
-        <FilterItems todoItems={todoItems} />
+        <FilterItems
+          todoFilter={todoFilter}
+          onTodoFilterChange={setTodoFilter}
+        />
         <DarkLight />
       </div>
       <div className="flex justify-center">
         <TodoList
-          todoItems={todoItems}
+          todoItems={todoItemList}
           changeItem={changeItem}
           newItem={newItem}
         />
       </div>
-      <div>
+      <div className="flex flex-col justify-end h-screen">
         <Footer />
       </div>
     </div>
