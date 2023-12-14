@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Listitem from './Listitem';
 import TodoList from './TodoList';
 import todos from './TodoList';
-import TodoContainer from '../App';
+import todoItems from './TodoList'
+import TodoContainer from './TodoContainer';
 
 
 
-const FilterItems = () => {
 
-    const Todotofilter = Object.values(todos);
+const FilterItems = (todoItems) => {
+
+    const Todotofilter = Object.values(todoItems);
+
 
     const [filter, setFilter] = useState('all');
+
 
     const handleFilterChange = (event) => {
         setFilter(event.target.value);
@@ -19,13 +23,13 @@ const FilterItems = () => {
     const filteredTodoItems = Todotofilter.filter((todos) => {
         switch (filter) {
             case 'completed':
-                setFilteredTodos(todos.filter(todo => todo.isDone === true));
+                setFilter(todos.filter(todo => todo.isDone === true));
                 break;
             case 'uncompleted':
-                setFilteredTodos(todos.filter(todo => todo.completed === false));
+                setFilter(todos.filter(todo => todo.isDone === false));
                 break;
             default:
-                setFilteredTodos(todos)
+                //  setFilter(todos)
                 break;
 
         };
@@ -39,9 +43,7 @@ const FilterItems = () => {
                     <option value="uncompleted">Uncompleted Todos</option>
                 </select>
             </div>
-            <div className="w-full h-auto"><ul>
-
-            </ul>
+            <div className="w-full h-auto">
             </div>
         </div>
     );

@@ -61,7 +61,7 @@ const TodoContainer = () => {
           newItem={newItem}
         />
       </div>
-      <div>
+      <div className="flex flex-col justify-end h-screen">
         <Footer />
       </div>
     </div>
