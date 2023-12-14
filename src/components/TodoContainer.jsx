@@ -63,7 +63,8 @@ const TodoContainer = () => {
   return (
     <div>
       <div className="flex justify-center">
-        <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" />
+        {/* <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /> */}
+        <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" />
       </div>
       <div className="flex flex-col-reverse items-center md:flex-row md:justify-around max-w-[1280px] px-24 mx-auto">
         <FilterItems
