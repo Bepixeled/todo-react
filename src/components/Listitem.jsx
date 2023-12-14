@@ -32,7 +32,6 @@ export default function Listitem({ item, changeItem, newItem }) {
   };
 
   const handleChange = (e) => {
-    console.log(`handleChange: text input content: ${e.target.value}`);
     changeText(e.target.value);
   };
 
