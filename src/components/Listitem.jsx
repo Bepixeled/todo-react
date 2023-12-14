@@ -14,13 +14,13 @@ export default function Listitem({ item, changeItem, newItem }) {
   //   getTimeStamp() + 5 * 86400,
 
   const handleFocus = () => {
-    console.log("handleFocus()");
+    // console.log("handleFocus()");
     changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
     setText("");
   };
 
   const handleChange = (e) => {
-    console.log(`handleChange: text input content: ${e.target.value}`);
+    // console.log(`handleChange: text input content: ${e.target.value}`);
     // console.log(event.key);
     changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
     setText(e.target.value);
