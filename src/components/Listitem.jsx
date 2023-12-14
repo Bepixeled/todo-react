@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Listitem({ item, changeItem, newItem }) {
+  const [text, setText] = useState(item.text);
+
   // Timstamp for Calculating due status
   const getTimeStamp = () => {
     //86400 Seconds per day
@@ -14,19 +16,15 @@ export default function Listitem({ item, changeItem, newItem }) {
   const handleFocus = () => {
     console.log("handleFocus()");
     changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
+    setText("");
   };
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     console.log("handleChange");
-    console.log(`text input content: ${event.target.value}`);
+    console.log(`text input content: ${e.target.value}`);
     // console.log(event.key);
-    changeItem(
-      item.id,
-      item.isDone,
-      item.dueDate,
-      event.target.value,
-      item.isNew
-    );
+    changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
+    setText(e.target.value);
   };
 
   const handleBlur = () => {
@@ -37,15 +35,23 @@ export default function Listitem({ item, changeItem, newItem }) {
     }
   };
 
+  // handles pressing enter by blurring the text input
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.target.blur();
+    }
+  };
+
   return (
     <li className="p-2 dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 w-9/12">
       <input
         type="text"
-        value={item.text}
+        value={text}
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
         onFocus={handleFocus}
         onChange={handleChange}
-        // onBlur={handleBlur}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
       />
     </li>
   );
