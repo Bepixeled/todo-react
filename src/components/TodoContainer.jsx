@@ -5,6 +5,7 @@ import DarkLight from "./Toggle";
 import Footer from "./Footer";
 import FilterItems from "./FilterItems";
 import { useState, useEffect } from "react";
+import TODO_DEFAULT_TEXT from "../constants/constants";
 
 const TodoContainer = () => {
   const [idCount, setIdCount] = useState(0);
@@ -27,21 +28,22 @@ const TodoContainer = () => {
   }
 
   const newItem = (enableFocus = false) => {
+    console.log("newItem()");
     const newItem = {
       id: idCount,
       isDone: false,
       dueDate: 0,
-      text: "Enter text...",
-      isNew: true,
-      focus: false,
+      text: TODO_DEFAULT_TEXT,
+      focus: enableFocus,
     };
-    setTodoItems([...todoItems, newItem]);
+    const newTodos = [...todoItems, newItem];
+    console.log(`todo items after newItem():`);
+    console.log(newTodos);
+    setTodoItems(newTodos);
     setIdCount(idCount + 1);
   };
 
   const changeItem = (id, isDone, dueDate, text, isNew) => {
-    // console.log("change Item");
-    // console.log(`todo text: ${text}`);
     const changedItem = {
       id: id,
       isDone: isDone,
@@ -51,11 +53,9 @@ const TodoContainer = () => {
       focus: false,
     };
     const todoIndex = todoItems.findIndex((item) => item.id === id);
-    // console.log(`todo index: ${todoIndex}`);
     const todos = todoItems;
     todos[todoIndex] = changedItem;
     setTodoItems(todos);
-    // console.log(todoItems);
   };
 
   useEffect(() => newItem(false), []);
