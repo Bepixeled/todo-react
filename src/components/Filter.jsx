@@ -12,7 +12,6 @@ const FilterItems = (todoItems) => {
 
     const Todotofilter = Object.values(todoItems);
 
-    useEffect(() => { setFilter },)
 
     const [filter, setFilter] = useState('all');
 
