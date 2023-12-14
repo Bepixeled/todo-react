@@ -1,41 +1,56 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import TODO_DEFAULT_TEXT from "../constants/constants.js";
 
 export default function Listitem({ item, changeItem, newItem }) {
   const [text, setText] = useState(item.text);
+  const [isNew, setIsNew] = useState(true);
 
   // Timstamp for Calculating due status
   const getTimeStamp = () => {
-    //86400 Seconds per day
+    // 86400 Seconds per day
     return Math.round(Date.now() / 1000);
   };
 
   // due variable for due state visuals
   const isDue = item.dueDate < getTimeStamp() ? true : false;
-  //   getTimeStamp() + 5 * 86400,
+  // getTimeStamp() + 5 * 86400,
+
+  const changeText = (text) => {
+    changeItem(item.id, item.isDone, item.dueDate, text, isNew);
+    setText(text);
+  };
+
+  const toggleNew = () => {
+    changeItem(item.id, item.isDone, item.dueDate, item.text, !isNew);
+    setIsNew(!isNew);
+  };
 
   const handleFocus = () => {
-    console.log("handleFocus()");
-    changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
-    setText("");
+    if (isNew && text === TODO_DEFAULT_TEXT) {
+      changeText("");
+    }
   };
 
   const handleChange = (e) => {
     console.log(`handleChange: text input content: ${e.target.value}`);
-    // console.log(event.key);
-    changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
-    setText(e.target.value);
+    changeText(e.target.value);
   };
 
   const handleBlur = () => {
-    if (item.isNew) {
-      newItem(item.id);
+    if (isNew) {
+      newItem(false);
+      toggleNew();
     }
   };
 
   // handles pressing enter by blurring the text input
   const handleKeyDown = (e) => {
+    console.log(`isNew: ${isNew}`);
     if (e.keyCode === 13) {
-      e.target.blur();
+      if (isNew) {
+        newItem(true);
+        toggleNew();
+      }
     }
   };
 
