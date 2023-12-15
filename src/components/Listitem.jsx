@@ -80,7 +80,7 @@ export default function Listitem({
           // onBlur={handleBlur}
         />
       </li>
-      <AccomplishItem />
+      <AccomplishItem onChangeItem={onChangeItem} item={item}/>
     </div>
   );
 }
