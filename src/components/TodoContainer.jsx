@@ -8,8 +8,14 @@ import { useState, useEffect } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants";
 
 const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
-  const [idCount, setIdCount] = useState(todoItems.length);
+  const [idCount, setIdCount] = useState(0);
   const [todoFilter, setTodoFilter] = useState("all");
+
+  useEffect(()=>{
+    if (idCount === 0) {
+      setIdCount(todoItems.length);
+    }
+  })
 
   let todoItemList = [];
   // Item Filter Logic
