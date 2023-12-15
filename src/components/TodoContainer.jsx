@@ -7,7 +7,7 @@ import FilterItems from "./FilterItems";
 import { useState, useEffect } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants";
 
-const TodoContainer = ({ todoItems, addNewTodoItem }) => {
+const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
   const [idCount, setIdCount] = useState(todoItems.length);
   const [todoFilter, setTodoFilter] = useState("all");
 
@@ -26,9 +26,7 @@ const TodoContainer = ({ todoItems, addNewTodoItem }) => {
       break;
   }
 
-  // {id: idCount, isDone: false, dueDate: 0,text: "Enter text...",isNew: true}
-
-  const newItem = (enableFocus = false) => {
+  const onNewItem = (enableFocus = false) => {
     console.log("newItem()");
     const newItem = {
       id: idCount,
@@ -36,22 +34,26 @@ const TodoContainer = ({ todoItems, addNewTodoItem }) => {
       dueDate: 0,
       text: TODO_DEFAULT_TEXT,
       focus: enableFocus,
+      isNew: true,
     };
-    const newTodos = [...todoItems, newItem];
-    console.log(`todo items after newItem():`);
-    console.log(newTodos);
-    setTodoItems(newTodos);
+    // const newTodos = [...todoItems, newItem];
+    // console.log(`todo items after newItem():`);
+    // console.log(newTodos);
+    // setTodoItems(newTodos);
     addNewTodoItem(newItem);
     setIdCount(idCount + 1);
   };
-  
-  const changeItem = (item) => {
-    item.id = idCount +1;
-    addNewTodoItem(item);
-    setIdCount(idCount + 1);
-  };
 
-  useEffect(() => newItem(true), []);
+  useEffect(() => {
+    if (
+      localStorage.getItem("todoItems") === null ||
+      localStorage.getItem("todoItems") === "[]" ||
+      JSON.parse(localStorage.getItem("todoItems")).length === 0
+    ) {
+      console.log("EUSEFFECT::ERROR: should not be fired");
+      onNewItem(false);
+    }
+  }, []);
 
   return (
     <div>
@@ -69,9 +71,9 @@ const TodoContainer = ({ todoItems, addNewTodoItem }) => {
       <div className="flex justify-center">
         <TodoList
           todoItems={todoItemList}
-          changeItem={changeItem}
-          newItem={newItem}
-          addNewTodoItem={addNewTodoItem}
+          onChangeItem={onChangeItem}
+          onNewItem={onNewItem}
+          // addNewTodoItem={addNewTodoItem}
         />
       </div>
       <div className="flex flex-col justify-end h-screen">
