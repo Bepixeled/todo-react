@@ -4,7 +4,7 @@ const FilterItems = ({ todoFilter, onTodoFilterChange }) => {
       <div className="relative mb-4 flex w-full  items-stretch">
         <form>
           <select
-            className="select select-accent w-full max-w-xs"
+            className="select select-accent w-full max-w-xs dark:bg-dark-primary-500"
             value={todoFilter}
             onChange={(e) => onTodoFilterChange(e.target.value)}
           >
