@@ -7,6 +7,7 @@ function App() {
   useEffect(() => {
     localStorage.theme = "light";
   }, []);
+
   return (
     <>
       <TodoContainer />
