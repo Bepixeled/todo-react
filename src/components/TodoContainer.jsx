@@ -7,13 +7,13 @@ import FilterItems from "./FilterItems";
 import { useState, useEffect } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants";
 
-const TodoContainer = () => {
-  const [idCount, setIdCount] = useState(0);
-  const [todoItems, setTodoItems] = useState([]);
+const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
+  const [idCount, setIdCount] = useState(todoItems.length);
   const [todoFilter, setTodoFilter] = useState("all");
 
   let todoItemList = [];
   // Item Filter Logic
+  // If todoFilter is all take the unchanged todoitem List
   switch (todoFilter) {
     case "completed":
       todoItemList = todoItems.filter((todo) => todo.isDone === true);
@@ -22,12 +22,11 @@ const TodoContainer = () => {
       todoItemList = todoItems.filter((todo) => todo.isDone === false);
       break;
     default:
-      // If todoFilter is all take the unchanged todoitem List
       todoItemList = todoItems;
       break;
   }
 
-  const newItem = (enableFocus = false) => {
+  const onNewItem = (enableFocus = false) => {
     console.log("newItem()");
     const newItem = {
       id: idCount,
@@ -35,30 +34,26 @@ const TodoContainer = () => {
       dueDate: 0,
       text: TODO_DEFAULT_TEXT,
       focus: enableFocus,
+      isNew: true,
     };
-    const newTodos = [...todoItems, newItem];
-    console.log(`todo items after newItem():`);
-    console.log(newTodos);
-    setTodoItems(newTodos);
+    // const newTodos = [...todoItems, newItem];
+    // console.log(`todo items after newItem():`);
+    // console.log(newTodos);
+    // setTodoItems(newTodos);
+    addNewTodoItem(newItem);
     setIdCount(idCount + 1);
   };
 
-  const changeItem = (id, isDone, dueDate, text, isNew) => {
-    const changedItem = {
-      id: id,
-      isDone: isDone,
-      dueDate: dueDate,
-      text: text,
-      isNew: isNew,
-      focus: false,
-    };
-    const todoIndex = todoItems.findIndex((item) => item.id === id);
-    const todos = todoItems;
-    todos[todoIndex] = changedItem;
-    setTodoItems(todos);
-  };
-
-  useEffect(() => newItem(false), []);
+  useEffect(() => {
+    if (
+      localStorage.getItem("todoItems") === null ||
+      localStorage.getItem("todoItems") === "[]" ||
+      JSON.parse(localStorage.getItem("todoItems")).length === 0
+    ) {
+      console.log("EUSEFFECT::ERROR: should not be fired");
+      onNewItem(false);
+    }
+  }, []);
 
   return (
     <div>
@@ -76,8 +71,9 @@ const TodoContainer = () => {
       <div className="flex justify-center">
         <TodoList
           todoItems={todoItemList}
-          changeItem={changeItem}
-          newItem={newItem}
+          onChangeItem={onChangeItem}
+          onNewItem={onNewItem}
+          // addNewTodoItem={addNewTodoItem}
         />
       </div>
       <div className="flex flex-col justify-end h-screen">
