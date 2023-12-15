@@ -79,7 +79,7 @@ export default function Listitem({
           // onBlur={handleBlur}
         />
       </li>
-        <i onClick={handleDelete} HTMLstyle="cursor:pointer;">Trash</i>
+        <i onClick={handleDelete}>Trash</i>
     </div>
   );
 }

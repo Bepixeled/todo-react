@@ -20,10 +20,10 @@ const TodoList = ({
                 <Listitem
                   key={item.id}
                   item={item}
-                  changeItem={changeItem}
-                  newItem={newItem}
+                  onChangeItem={onChangeItem}
+                  onNewItem={onNewItem}
                   onDeleteTodoItem={onDeleteTodoItem}
-            />
+                />
               );
             })}
           </ol>
