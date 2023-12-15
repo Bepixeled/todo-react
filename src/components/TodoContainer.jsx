@@ -62,7 +62,7 @@ const TodoContainer = () => {
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center p-12">
         {/* <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /> */}
         <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" />
       </div>
