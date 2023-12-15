@@ -8,8 +8,14 @@ import { useState, useEffect } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants";
 
 const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
-  const [idCount, setIdCount] = useState(todoItems.length);
+  const [idCount, setIdCount] = useState(0);
   const [todoFilter, setTodoFilter] = useState("all");
+
+  useEffect(()=>{
+    if (idCount === 0) {
+      setIdCount(todoItems.length);
+    }
+  })
 
   let todoItemList = [];
   // Item Filter Logic
@@ -56,10 +62,10 @@ const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
   }, []);
 
   return (
-    <div>
-      <div className="flex justify-center p-12">
+    <div className="h-full">
+      <div className="flex justify-center min">
         {/* <img src="src/todo-or-not-todo.png" alt="Todo Or Not Todo" /> */}
-        <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" />
+        <img src="src/assets/todo-or-not-todo.svg" alt="Todo Or Not Todo" className="m-8 w-80" />
       </div>
       <div className="flex flex-col-reverse items-center md:flex-row md:justify-around max-w-[1280px] px-24 mx-auto">
         <FilterItems
@@ -68,7 +74,7 @@ const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
         />
         <DarkLight />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center items-start min-h-screen">
         <TodoList
           todoItems={todoItemList}
           onChangeItem={onChangeItem}
@@ -76,7 +82,7 @@ const TodoContainer = ({ todoItems, addNewTodoItem , onChangeItem}) => {
           // addNewTodoItem={addNewTodoItem}
         />
       </div>
-      <div className="flex flex-col justify-end h-screen">
+      <div className="flex flex-col justify-end  items-stretch">
         <Footer />
       </div>
     </div>
