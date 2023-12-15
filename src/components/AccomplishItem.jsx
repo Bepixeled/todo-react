@@ -13,7 +13,7 @@ function AccomplishItem({ onChangeItem, item }) {
 
   return (
     <div
-      className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 "
+      className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 w-12 h-12 bg-gray-200"
       onClick={handelAccomblishToggle}
     >
       <svg

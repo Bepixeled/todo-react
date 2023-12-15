@@ -65,7 +65,7 @@ export default function Listitem({
 
 
   return (
-    <div>
+    <div className="flex flex-row w-96">
       <DeleteItem onDeleteTodoItem={onDeleteTodoItem} item={item} />
       <li className="p-2 dark:bg-dark-secondary-600 bg-light-primary-200  bg-gray-200 w-9/12 h-12 flex items-center mb-4 justify-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:shadow-[0_3px_10px_rgb(0,0,0,0.6)]">
         <input
@@ -77,10 +77,10 @@ export default function Listitem({
           onChange={handleTextChange}
           onKeyDown={handleKeyDown}
 
-          // onBlur={handleBlur}
+        // onBlur={handleBlur}
         />
       </li>
-      <AccomplishItem onChangeItem={onChangeItem} item={item}/>
+      <AccomplishItem onChangeItem={onChangeItem} item={item} />
     </div>
   );
 }

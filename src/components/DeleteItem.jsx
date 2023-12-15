@@ -6,7 +6,7 @@ function DeleteItem({ onDeleteTodoItem, item }) {
   };
 
   return (
-    <div className=" flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-4 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 px-1 ">
+    <div className=" flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 w-12 h-12 px-1 ">
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
