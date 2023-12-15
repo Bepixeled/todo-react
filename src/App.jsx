@@ -28,7 +28,6 @@ function App() {
 
   function onChangeItem(item) {
     const index = todoItems.findIndex((i) => i.id === item.id);
-    console.log(index);
     let newTodoItems = todoItems;
     newTodoItems[index] = item;
     localStorage.setItem("todoItems", JSON.stringify(newTodoItems));

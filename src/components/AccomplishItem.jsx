@@ -1,9 +1,21 @@
-function AccomplishItem() {
+function AccomplishItem({ onChangeItem, item }) {
   const size = "30pt";
 
+  function handelAccomblishToggle() {
+    if (item.isDone) {
+      item.isDone = false;
+    } else {
+      item.isDone = true;
+    }
+
+    onChangeItem(item);
+  }
+
   return (
-    <div className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 ">
-      {/* <img src="src/1425312.svg " alt="" /> */}
+    <div
+      className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 "
+      onClick={handelAccomblishToggle}
+    >
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
