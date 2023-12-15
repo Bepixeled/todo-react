@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants.js";
 
-export default function Listitem({ item, changeItem, newItem }) {
+export default function Listitem({ item, onChangeItem, onNewItem, addNewTodoItem }) {
   const [text, setText] = useState(item.text);
   const [isNew, setIsNew] = useState(true);
 
@@ -16,29 +16,31 @@ export default function Listitem({ item, changeItem, newItem }) {
   // getTimeStamp() + 5 * 86400,
 
   const changeText = (text) => {
-    changeItem(item.id, item.isDone, item.dueDate, text, isNew);
+    // changeItem(item);
     setText(text);
   };
 
   const toggleNew = () => {
-    changeItem(item.id, item.isDone, item.dueDate, item.text, !isNew);
-    setIsNew(!isNew);
+    // item.isNew = !isNew;
+    // onNewItem(true);
+    // setIsNew(false);
   };
 
-  const handleFocus = () => {
+  const handleTextFocus = () => {
     if (isNew && text === TODO_DEFAULT_TEXT) {
       changeText("");
     }
   };
 
-  const handleChange = (e) => {
+  const handleTextChange = (e) => {
     changeText(e.target.value);
   };
 
   const handleBlur = () => {
     if (isNew) {
-      newItem(false);
-      toggleNew();
+      onNewItem(false);
+      onNewItem(false);
+      // toggleNew();
     }
   };
 
@@ -47,8 +49,14 @@ export default function Listitem({ item, changeItem, newItem }) {
     console.log(`isNew: ${isNew}`);
     if (e.keyCode === 13) {
       if (isNew) {
-        newItem(true);
-        toggleNew();
+        console.log("__ENTER__");
+        onNewItem(true);
+        setIsNew(false);
+        // console.log(item);
+        item.text = e.target.value;
+        item.isNew = false;
+        // console.log(item);
+        onChangeItem(item);
       }
     }
   };
@@ -60,10 +68,10 @@ export default function Listitem({ item, changeItem, newItem }) {
         value={text}
         autoFocus={item.focus}
         className="dark:bg-dark-secondary-700 bg-light-primary-100 active:border-dark-accent1-300 w-9/12 text-center"
-        onFocus={handleFocus}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        onFocus={handleTextFocus}
+        onChange={handleTextChange}
         onKeyDown={handleKeyDown}
+        // onBlur={handleBlur}
       />
     </li>
   );
