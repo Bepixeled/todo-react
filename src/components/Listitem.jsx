@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Listitem({ item, changeItem, newItem }) {
+export default function Listitem({
+  item,
+  changeItem,
+  newItem,
+  addNewTodoItem,
+}) {
   const [text, setText] = useState(item.text);
 
   // Timstamp for Calculating due status
@@ -15,14 +20,14 @@ export default function Listitem({ item, changeItem, newItem }) {
 
   const handleFocus = () => {
     // console.log("handleFocus()");
-    changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
+    // changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
     setText("");
   };
 
   const handleChange = (e) => {
     // console.log(`handleChange: text input content: ${e.target.value}`);
     // console.log(event.key);
-    changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
+    // changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
     setText(e.target.value);
   };
 
@@ -36,6 +41,10 @@ export default function Listitem({ item, changeItem, newItem }) {
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.target.blur();
+      console.log(item);
+      item.text = e.target.value;
+      console.log(item);
+      changeItem(item);
     }
   };
 
