@@ -1,7 +1,12 @@
 import { useState } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants.js";
 
-export default function Listitem({ item, onChangeItem, onNewItem, addNewTodoItem }) {
+export default function Listitem({
+  item,
+  onChangeItem,
+  onNewItem,
+  onDeleteTodoItem,
+}) {
   const [text, setText] = useState(item.text);
   const [isNew, setIsNew] = useState(true);
 
@@ -18,12 +23,6 @@ export default function Listitem({ item, onChangeItem, onNewItem, addNewTodoItem
   const changeText = (text) => {
     // changeItem(item);
     setText(text);
-  };
-
-  const toggleNew = () => {
-    // item.isNew = !isNew;
-    // onNewItem(true);
-    // setIsNew(false);
   };
 
   const handleTextFocus = () => {
@@ -61,20 +60,26 @@ export default function Listitem({ item, onChangeItem, onNewItem, addNewTodoItem
     }
   };
 
+  const handleDelete = () => {
+    onDeleteTodoItem(item.id);
+  };
+
   return (
-    <li className="p-2 dark:bg-dark-secondary-600 bg-light-primary-200  bg-gray-200 w-9/12 h-12 flex items-center mb-4 justify-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:shadow-[0_3px_10px_rgb(0,0,0,0.6)]" >
-      <input
-        type="text"
-        value={text}
-        autoFocus={item.focus}
+    <div>
+      <li className="p-2 dark:bg-dark-secondary-600 bg-light-primary-200  bg-gray-200 w-9/12 h-12 flex items-center mb-4 justify-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:shadow-[0_3px_10px_rgb(0,0,0,0.6)]">
+        <input
+          type="text"
+          value={text}
+          autoFocus={item.focus}
+          className="dark:bg-dark-secondary-600 bg-light-primary-200 active:border-dark-accent1-300 w-9/12 text-center"
+          onFocus={handleTextFocus}
+          onChange={handleTextChange}
+          onKeyDown={handleKeyDown}
 
-        className="dark:bg-dark-secondary-600 bg-light-primary-200 active:border-dark-accent1-300 w-9/12 text-center"
-        onFocus={handleTextFocus}
-        onChange={handleTextChange}
-
-        onKeyDown={handleKeyDown}
-        // onBlur={handleBlur}
-      />
-    </li>
+          // onBlur={handleBlur}
+        />
+      </li>
+        <i onClick={handleDelete} HTMLstyle="cursor:pointer;">Trash</i>
+    </div>
   );
 }

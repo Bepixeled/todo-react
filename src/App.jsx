@@ -12,15 +12,6 @@ function App() {
     localStorage.setItem("todoItems", JSON.stringify([]));
   }
 
-  //   {
-  //   id: 0,
-  //   isDone: false,
-  //   dueDate: 0,
-  //   text: "Enter text...",
-  //   isNew: true,
-  //   focus: true,
-  // },
-
   function addNewTodoItem(item) {
     console.log("IN::addnewTodoItem", item);
     let newTodoItems = todoItems;
@@ -40,6 +31,14 @@ function App() {
     console.log(index);
     let newTodoItems = todoItems;
     newTodoItems[index] = item;
+    localStorage.setItem("todoItems", JSON.stringify(newTodoItems));
+    setTodoItems(newTodoItems);
+  }
+
+  function onDeleteTodoItem(id) {
+    const index = todoItems.findIndex((i) => i.id === id);
+    console.log(index);
+    let newTodoItems = todoItems.filter((item)=> item.id !== id);
     localStorage.setItem("todoItems", JSON.stringify(newTodoItems));
     setTodoItems(newTodoItems);
   }
@@ -78,6 +77,7 @@ function App() {
         todoItems={todoItems}
         addNewTodoItem={addNewTodoItem}
         onChangeItem={onChangeItem}
+        onDeleteTodoItem={onDeleteTodoItem}
       />
     </>
   );
