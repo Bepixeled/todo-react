@@ -1,41 +1,63 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import TODO_DEFAULT_TEXT from "../constants/constants.js";
 
-export default function Listitem({ item, changeItem, newItem }) {
+export default function Listitem({ item, onChangeItem, onNewItem, addNewTodoItem }) {
   const [text, setText] = useState(item.text);
+  const [isNew, setIsNew] = useState(true);
 
   // Timstamp for Calculating due status
   const getTimeStamp = () => {
-    //86400 Seconds per day
+    // 86400 Seconds per day
     return Math.round(Date.now() / 1000);
   };
 
   // due variable for due state visuals
   const isDue = item.dueDate < getTimeStamp() ? true : false;
-  //   getTimeStamp() + 5 * 86400,
+  // getTimeStamp() + 5 * 86400,
 
-  const handleFocus = () => {
-    // console.log("handleFocus()");
-    changeItem(item.id, item.isDone, item.dueDate, "", item.isNew);
-    setText("");
+  const changeText = (text) => {
+    // changeItem(item);
+    setText(text);
   };
 
-  const handleChange = (e) => {
-    // console.log(`handleChange: text input content: ${e.target.value}`);
-    // console.log(event.key);
-    changeItem(item.id, item.isDone, item.dueDate, e.target.value, item.isNew);
-    setText(e.target.value);
+  const toggleNew = () => {
+    // item.isNew = !isNew;
+    // onNewItem(true);
+    // setIsNew(false);
+  };
+
+  const handleTextFocus = () => {
+    if (isNew && text === TODO_DEFAULT_TEXT) {
+      changeText("");
+    }
+  };
+
+  const handleTextChange = (e) => {
+    changeText(e.target.value);
   };
 
   const handleBlur = () => {
-    if (item.isNew) {
-      newItem(item.id);
+    if (isNew) {
+      onNewItem(false);
+      onNewItem(false);
+      // toggleNew();
     }
   };
 
   // handles pressing enter by blurring the text input
   const handleKeyDown = (e) => {
+    console.log(`isNew: ${isNew}`);
     if (e.keyCode === 13) {
-      e.target.blur();
+      if (isNew) {
+        console.log("__ENTER__");
+        onNewItem(true);
+        setIsNew(false);
+        // console.log(item);
+        item.text = e.target.value;
+        item.isNew = false;
+        // console.log(item);
+        onChangeItem(item);
+      }
     }
   };
 
@@ -45,11 +67,13 @@ export default function Listitem({ item, changeItem, newItem }) {
         type="text"
         value={text}
         autoFocus={item.focus}
+
         className="dark:bg-dark-secondary-600 bg-light-primary-200 active:border-dark-accent1-300 w-9/12 text-center"
-        onFocus={handleFocus}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        onFocus={handleTextFocus}
+        onChange={handleTextChange}
+
         onKeyDown={handleKeyDown}
+        // onBlur={handleBlur}
       />
     </li>
   );
