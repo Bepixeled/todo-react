@@ -57,6 +57,7 @@ function App() {
     }
   }, []);
 
+
   useEffect(() => {
     // console.log(localStorage.getItem("todoItems") != JSON.stringify(todoItems));
     // console.log(JSON.parse(localStorage.getItem("todoItems")));
@@ -69,6 +70,7 @@ function App() {
   // KEEP THIS !!! IN CASE TodoItems get LOST
   // Executed on every render
   // depends on state
+
 
   return (
     <>
