@@ -1,11 +1,13 @@
-function AccomplishItem({ onChangeItem, item }) {
+function AccomplishItem({ onChangeItem, item, setIsDone }) {
   const size = "30pt";
 
   function handelAccomblishToggle() {
     if (item.isDone) {
       item.isDone = false;
+      setIsDone(false);
     } else {
       item.isDone = true;
+      setIsDone(true);
     }
 
     onChangeItem(item);
