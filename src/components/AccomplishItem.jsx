@@ -1,21 +1,27 @@
+function AccomplishItem() {
+  const size = "30pt";
 
-
-function X (){
-    const size = "50pt";
-
-    return(
-
-<div className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 ">
-            {/* <img src="src/1425312.svg " alt="" /> */}
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                  width={size} height={size}  viewBox="0 0 1280.000000 1221.000000"
-                  preserveAspectRatio="xMidYMid meet">
-                  <metadata>
-                  Created by potrace 1.15, written by Peter Selinger 2001-2017
-                  </metadata>
-                  <g transform="translate(0.000000,1221.000000) scale(0.100000,-0.100000)"
-                  fill="#528881" stroke="none">
-                  <path d="M12338 12195 c-221 -42 -535 -187 -1078 -498 -1589 -910 -2995 -2217
+  return (
+    <div className="flex justify-center flex-col items-center  dark:bg-dark-secondary-700 bg-light-primary-100 border-b-2 border-solid dark:border-blue-200 bg-gray-200 border-gray-700 ">
+      {/* <img src="src/1425312.svg " alt="" /> */}
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 1280.000000 1221.000000"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <metadata>
+          Created by potrace 1.15, written by Peter Selinger 2001-2017
+        </metadata>
+        <g
+          transform="translate(0.000000,1221.000000) scale(0.100000,-0.100000)"
+          fill="#528881"
+          stroke="none"
+        >
+          <path
+            d="M12338 12195 c-221 -42 -535 -187 -1078 -498 -1589 -910 -2995 -2217
                   -4032 -3747 -521 -769 -946 -1582 -1285 -2460 -136 -353 -307 -890 -403 -1268
                   l-11 -43 -92 79 c-827 707 -2285 1843 -2451 1910 -160 65 -451 25 -691 -95
                   -114 -58 -167 -93 -232 -156 -62 -60 -81 -103 -61 -144 8 -17 99 -92 238 -196
@@ -23,8 +29,10 @@ function X (){
                   276 -137 217 -22 617 105 782 250 56 48 70 75 84 162 198 1196 527 2224 1051
                   3285 390 789 812 1449 1370 2144 747 930 1585 1698 2565 2352 312 209 598 374
                   1059 614 165 86 210 114 257 161 115 115 101 205 -41 259 -73 28 -235 34 -343
-                  14z"/>
-                  <path d="M5330 11099 c-384 -14 -742 -64 -1120 -159 -820 -205 -1554 -579
+                  14z"
+          />
+          <path
+            d="M5330 11099 c-384 -14 -742 -64 -1120 -159 -820 -205 -1554 -579
                   -2225 -1136 -168 -139 -541 -512 -680 -679 -741 -893 -1163 -1900 -1282 -3055
                   -21 -207 -24 -793 -5 -980 36 -352 81 -618 154 -905 393 -1552 1460 -2876
                   2898 -3596 639 -319 1257 -494 2015 -570 198 -20 768 -17 980 4 702 73 1293
@@ -37,12 +45,12 @@ function X (){
                   -516 1825 -21 202 -23 703 -5 900 83 900 362 1708 838 2428 864 1309 2243
                   2155 3793 2327 402 45 905 36 1300 -21 560 -82 1048 -233 1580 -490 129 -63
                   227 -104 245 -104 46 1 109 34 136 71 19 28 24 46 24 100 0 106 -16 120 -269
-                  244 -844 412 -1723 598 -2676 564z"/>
-                  </g>
-                  </svg>
-          </div>
-
-    );
+                  244 -844 412 -1723 598 -2676 564z"
+          />
+        </g>
+      </svg>
+    </div>
+  );
 }
 
-export default X;
+export default AccomplishItem;

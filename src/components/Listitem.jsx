@@ -1,5 +1,7 @@
 import { useState } from "react";
 import TODO_DEFAULT_TEXT from "../constants/constants.js";
+import AccomplishItem from "./AccomplishItem.jsx";
+import DeleteItem from "./DeleteItem.jsx";
 
 export default function Listitem({
   item,
@@ -60,12 +62,11 @@ export default function Listitem({
     }
   };
 
-  const handleDelete = () => {
-    onDeleteTodoItem(item.id);
-  };
+
 
   return (
     <div>
+      <DeleteItem onDeleteTodoItem={onDeleteTodoItem} item={item} />
       <li className="p-2 dark:bg-dark-secondary-600 bg-light-primary-200  bg-gray-200 w-9/12 h-12 flex items-center mb-4 justify-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:shadow-[0_3px_10px_rgb(0,0,0,0.6)]">
         <input
           type="text"
@@ -79,7 +80,7 @@ export default function Listitem({
           // onBlur={handleBlur}
         />
       </li>
-        <i onClick={handleDelete}>Trash</i>
+      <AccomplishItem />
     </div>
   );
 }

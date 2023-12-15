@@ -38,7 +38,11 @@ function App() {
   function onDeleteTodoItem(id) {
     const index = todoItems.findIndex((i) => i.id === id);
     console.log(index);
-    let newTodoItems = todoItems.filter((item)=> item.id !== id);
+    let newTodoItems = todoItems.filter((item) => item.id !== id);
+    // Cleanup Items after Delete
+    for (let index = 0; index < newTodoItems.length; index++) {
+      newTodoItems[index].id = index;
+    }
     localStorage.setItem("todoItems", JSON.stringify(newTodoItems));
     setTodoItems(newTodoItems);
   }
@@ -56,20 +60,11 @@ function App() {
     }
   }, []);
 
-
   useEffect(() => {
-    // console.log(localStorage.getItem("todoItems") != JSON.stringify(todoItems));
-    // console.log(JSON.parse(localStorage.getItem("todoItems")));
-    // console.log(todoItems);
     if (localStorage.getItem("todoItems") != JSON.stringify(todoItems)) {
       setTodoItems(JSON.parse(localStorage.getItem("todoItems")));
     }
   });
-
-  // KEEP THIS !!! IN CASE TodoItems get LOST
-  // Executed on every render
-  // depends on state
-
 
   return (
     <>
